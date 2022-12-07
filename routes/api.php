@@ -11,3 +11,11 @@
 |
 */
 
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\TenantController;
+
+Route::get('/tenants', [TenantController::class, 'index']);
+Route::get('/tenants/{uuid}', [TenantController::class, 'show']);
+
+Route::get('/categories', [CategoryController::class, 'categoriesByTenant']);
+Route::get('/categories/{url}', [CategoryController::class, 'show']);
