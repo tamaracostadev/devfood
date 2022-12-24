@@ -23,4 +23,20 @@ class Category extends Model
 		return $this->belongsToMany(Product::class);
 	}
 
+	public function productsAvailable($filter = null)
+	{
+		return Product::whereNotIn('id', function ($query) {
+			$query->select('category_product.product_id');
+			$query->from('category_product');
+			$query->whereRaw("category_product.category_id={$this->id}");
+		})
+			->where(function ($queryFilter) use ($filter) {
+				if ($filter) {
+					$queryFilter->where('products.title', 'LIKE', "%{$filter}%");
+				}
+			})
+			->paginate();
+	}
+
+
 }

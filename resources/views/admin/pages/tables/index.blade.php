@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Mesas')
 
 @section('content_header')
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-		<li class="breadcrumb-item active"><a href="{{ route('categories.index') }}">Categorias</a></li>
+		<li class="breadcrumb-item active"><a href="{{ route('tables.index') }}">Mesas</a></li>
 	</ol>
-	<h1>Categorias</h1>
+	<h1>Mesas</h1>
 @stop
 
 @section('content')
 	<div class="card">
 		<div class="card-header">
-			<a href="{{ route('categories.create') }}" class="btn btn-dark">Adicionar Categoria</a>
-			<form action="{{ route('categories.search') }}" method="POST" class="form form-inline float-right">
+			<a href="{{ route('tables.create') }}" class="btn btn-dark">Adicionar Mesa</a>
+			<form action="{{ route('tables.search') }}" method="POST" class="form form-inline float-right">
 				@csrf
 				<div class="form-group">
 					<input type="text" name="filter" placeholder="Nome" class="form-control"
@@ -28,24 +28,29 @@
 				<thead>
 				<tr>
 					<th>#</th>
-					<th>Nome</th>
+					<th>Identificador</th>
 					<th>Descrição</th>
+					<th>Status</th>
 					<th>Ações</th>
 				</tr>
 				</thead>
 				<tbody>
-				@foreach($categories as $category)
+				@foreach($tables as $table)
 					<tr>
-						<td>{{ $category->id }}</td>
-						<td>{{ $category->name }}</td>
-						<td>{{ $category->description }}</td>
+						<td>{{ $table->id }}</td>
+						<td>{{ $table->identify }}</td>
+						<td>{{ $table->description }}</td>
 						<td>
-							<a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+							@if($table->status == 'available')
+								<span class="badge badge-success">Disponível</span>
+							@else
+								<span class="badge badge-danger">Indisponível</span>
+						@endif
+						<td>
+							<a href="{{ route('tables.edit', ['table' => $table->id]) }}"
 							   class="btn btn-info">Editar</a>
-							<a href="{{ route('categories.show', ['category' => $category->id]) }}"
+							<a href="{{ route('tables.show', ['table' => $table->id]) }}"
 							   class="btn btn-warning">Ver</a>
-							<a href="{{ route('categories.products', $category->id) }}" class="btn btn-warning"><i
-									class="fas fa-shopping-bag"></i></a>
 						</td>
 					</tr>
 				@endforeach

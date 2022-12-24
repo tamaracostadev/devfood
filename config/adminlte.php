@@ -307,43 +307,55 @@ return [
 			'text' => 'search',
 		],
 		[
+			'icon' => 'fas fa-fw fa-home',
+			'text' => 'Empresas',
+			'url' => 'admin/tenants',
+			'can' => 'tenants',
+		],
+		[
 			'icon' => 'fas fa-list-alt',
 			'text' => 'Planos',
 			'url' => 'admin/plans',
+			'can' => 'plans',
 		],
 		[
 			'text' => 'Perfis',
 			'url' => 'admin/profiles',
 			'icon' => 'fas fa-fw fa-users',
+			'can' => 'profiles',
 
 		],
 		[
 			'text' => 'Permissões',
 			'url' => 'admin/permissions',
 			'icon' => 'fas fa-fw fa-lock',
+			'can' => 'permissions',
 
 		],
-		['header' => 'account_settings'],
 		[
 			'text' => 'Usuários',
 			'url' => 'admin/users',
 			'icon' => 'fas fa-fw fa-user',
+			'can' => 'users',
 		],
 		[
 			'text' => 'Categorias',
 			'url' => 'admin/categories',
 			'icon' => 'fa fa-layer-group',
+			'can' => 'categories',
 		],
 		[
 			'text' => 'Produtos',
 			'url' => 'admin/products',
-			'icon' => 'fa fa-layer-group',
+			'icon' => 'fas fa-hamburger ',
+			'can' => 'products',
 		],
 		[
-			'text' => 'Sair',
-			'url' => 'logout',
-			'icon' => 'fas fa-fw fa-sign-out-alt',
-		],
+			'text' => 'Mesas',
+			'url' => 'admin/tables',
+			'icon' => 'fa fa-tablet',
+			'can' => 'tables',
+		]
 	],
 
 	/*

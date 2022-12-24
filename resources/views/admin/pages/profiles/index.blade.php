@@ -24,7 +24,7 @@
 			</form>
 		</div>
 		<div class="card-body">
-			<table class="c">
+			<table class="table table-condensed">
 				<thead>
 				<tr>
 					<th>Nome</th>

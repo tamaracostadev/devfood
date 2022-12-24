@@ -11,8 +11,10 @@ class PermissionController extends Controller
 {
 	protected $repository;
 
-	public function __construct(Permission $permission){
+	public function __construct(Permission $permission)
+	{
 		$this->repository = $permission;
+		$this->middleware(['can:permissions']);
 	}
 
 	public function index()
@@ -35,7 +37,7 @@ class PermissionController extends Controller
 	public function show($id)
 	{
 		$permission = $this->repository->find($id);
-		if(!$permission){
+		if (!$permission) {
 			return redirect()->back();
 		}
 		return view('admin.pages.permissions.show', compact('permission'));
@@ -44,7 +46,7 @@ class PermissionController extends Controller
 	public function edit($id)
 	{
 		$permission = $this->repository->find($id);
-		if(!$permission){
+		if (!$permission) {
 			return redirect()->back();
 		}
 		return view('admin.pages.permissions.edit', compact('permission'));
@@ -53,7 +55,7 @@ class PermissionController extends Controller
 	public function update(StoreUpdatePermission $request, $id)
 	{
 		$permission = $this->repository->find($id);
-		if(!$permission){
+		if (!$permission) {
 			return redirect()->back();
 		}
 		$permission->update($request->all());
@@ -63,14 +65,15 @@ class PermissionController extends Controller
 	public function destroy($id)
 	{
 		$permission = $this->repository->find($id);
-		if(!$permission){
+		if (!$permission) {
 			return redirect()->back();
 		}
 		$permission->delete();
 		return redirect()->route('permissions.index');
 	}
 
-	public function search(Request $request){
+	public function search(Request $request)
+	{
 		$filters = $request->except('_token');
 		$permissions = $this->repository->search($request->filter);
 		return view('admin.pages.permissions.index', compact('permissions', 'filters'));

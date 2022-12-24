@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Empresas')
 
 @section('content_header')
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-		<li class="breadcrumb-item active"><a href="{{ route('categories.index') }}">Categorias</a></li>
+		<li class="breadcrumb-item active"><a href="{{ route('tenants.index') }}">Empresas</a></li>
 	</ol>
-	<h1>Categorias</h1>
+	<h1>Empresas</h1>
 @stop
 
 @section('content')
 	<div class="card">
 		<div class="card-header">
-			<a href="{{ route('categories.create') }}" class="btn btn-dark">Adicionar Categoria</a>
-			<form action="{{ route('categories.search') }}" method="POST" class="form form-inline float-right">
+			<a href="{{ route('tenants.create') }}" class="btn btn-dark">Adicionar Empresa</a>
+			<form action="{{ route('tenants.search') }}" method="POST" class="form form-inline float-right">
 				@csrf
 				<div class="form-group">
 					<input type="text" name="filter" placeholder="Nome" class="form-control"
@@ -28,24 +28,26 @@
 				<thead>
 				<tr>
 					<th>#</th>
+					<th>Imagem</th>
 					<th>Nome</th>
-					<th>Descrição</th>
+					<th>Email</th>
 					<th>Ações</th>
 				</tr>
 				</thead>
 				<tbody>
-				@foreach($categories as $category)
+				@foreach($tenants as $tenant)
 					<tr>
-						<td>{{ $category->id }}</td>
-						<td>{{ $category->name }}</td>
-						<td>{{ $category->description }}</td>
+						<td>{{ $tenant->id }}</td>
+						<td width="200px"><img class="img-thumbnail" src="{{asset("/storage/{$tenant->logo}")}}"
+											   alt="{{$tenant->name}}">
+						</td>
+						<td>{{ $tenant->name }}</td>
+						<td>{{ $tenant->email }}</td>
 						<td>
-							<a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+							<a href="{{ route('tenants.edit', ['tenant' => $tenant->id]) }}"
 							   class="btn btn-info">Editar</a>
-							<a href="{{ route('categories.show', ['category' => $category->id]) }}"
+							<a href="{{ route('tenants.show', ['tenant' => $tenant->id]) }}"
 							   class="btn btn-warning">Ver</a>
-							<a href="{{ route('categories.products', $category->id) }}" class="btn btn-warning"><i
-									class="fas fa-shopping-bag"></i></a>
 						</td>
 					</tr>
 				@endforeach

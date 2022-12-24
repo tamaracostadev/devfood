@@ -12,18 +12,20 @@ class UserController extends Controller
 {
 	protected $repository;
 
-	public function __construct(User $user){
+	public function __construct(User $user)
+	{
 		$this->repository = $user;
+		$this->middleware(['can:users']);
 	}
 
-    public function index()
-    {
+	public function index()
+	{
 		$users = $this->repository->latest()->tenantUser()->paginate();
 
 		return view('admin.pages.users.index', [
 			'users' => $users
 		]);
-    }
+	}
 
 	public function create()
 	{

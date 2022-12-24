@@ -14,6 +14,7 @@ class PlanController extends Controller
 	public function __construct(Plan $plan)
 	{
 		$this->repository = $plan;
+		$this->middleware(['can:plans']);
 	}
 
 	public function index()
@@ -84,7 +85,7 @@ class PlanController extends Controller
 		if (!$plan) {
 			return redirect()->back();
 		}
-		if($plan->details->count() > 0){
+		if ($plan->details->count() > 0) {
 			return redirect()
 				->back()
 				->withErrors(['error' => 'Existem detalhes vinculados a esse plano, portanto não é possível deletar']);
