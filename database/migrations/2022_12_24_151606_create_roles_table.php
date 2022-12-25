@@ -9,9 +9,16 @@ return new class extends Migration {
 	{
 		Schema::create('roles', function (Blueprint $table) {
 			$table->id();
-
-
+			$table->string('name')->unique();
+			$table->text('description')->nullable();
 			$table->timestamps();
+		});
+
+		/* Pivot table permission x roles */
+		Schema::create('permission_role', function (Blueprint $table) {
+			$table->id();
+			$table->foreignId('permission_id')->constrained('permissions')->onDelete('cascade');
+			$table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
 		});
 	}
 

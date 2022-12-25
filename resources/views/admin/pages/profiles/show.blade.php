@@ -22,7 +22,7 @@
 			<form action="{{ route('profiles.destroy', $profile) }}" method="POST">
 				@csrf
 				@method('DELETE')
-				<button type="submit" class="btn btn-danger">Deletar o Plano {{ $profile->name }}</button>
+				<button type="submit" class="btn btn-danger">Deletar o Perfil {{ $profile->name }}</button>
 				<a class="btn btn-primary" href="{{ route('profiles.index') }}">Voltar</a>
 			</form>
 		</div>

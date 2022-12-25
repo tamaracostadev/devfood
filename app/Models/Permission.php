@@ -25,15 +25,20 @@ class Permission extends Model
 		return $this->belongsToMany(Profile::class);
 	}
 
+	public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	{
+		return $this->belongsToMany(Role::class);
+	}
+
 	public function profilesAvailable($filter = null)
 	{
-		return Profile::whereNotIn('id', function($query){
+		return Profile::whereNotIn('id', function ($query) {
 			$query->select('profile_permission.profile_id');
 			$query->from('profile_permission');
 			$query->whereRaw("profile_permission.permission_id={$this->id}");
 		})
-			->where(function($queryFilter) use ($filter){
-				if($filter){
+			->where(function ($queryFilter) use ($filter) {
+				if ($filter) {
 					$queryFilter->where('profiles.name', 'LIKE', "%{$filter}%");
 				}
 			})
