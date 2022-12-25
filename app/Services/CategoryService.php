@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\Contracts\TenantRepositoryInterface;
+use Illuminate\Support\Collection;
 
 class CategoryService
 {
@@ -15,16 +16,11 @@ class CategoryService
 		$this->tenantRepository = $tenantRepository;
 	}
 
-	public function getCategoriesByTenantUuid(string $uuid)
+	public function getCategoriesByTenantUuid(string $uuid): Collection
 	{
 		$tenant = $this->tenantRepository->getTenantByUuid($uuid);
 
 		return $this->categoryRepository->getCategoriesByTenantId($tenant->id);
-	}
-
-	public function getCategoriesByTenantId(int $idTenant)
-	{
-		return $this->categoryRepository->getCategoriesByTenantId($idTenant);
 	}
 
 	public function getCategoryByUrl(string $url)
