@@ -11,6 +11,7 @@ class ProductObserver
 	{
 		/* Creating a slug for the product title. */
 		$product->flag = Str::kebab($product->title);
+		$product->uuid = Str::uuid();
 	}
 
 	/**

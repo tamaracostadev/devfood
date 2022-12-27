@@ -28,8 +28,8 @@ class TableRepository implements Contracts\TableRepositoryInterface
 		return DB::table($this->table)->where('tenant_id', $idTenant)->get();
 	}
 
-	public function getTableById(int $id)
+	public function getTableByUuid(string $uuid)
 	{
-		return DB::table($this->table)->where('id', $id)->first();
+		return DB::table($this->table)->where('uuid', $uuid)->first();
 	}
 }

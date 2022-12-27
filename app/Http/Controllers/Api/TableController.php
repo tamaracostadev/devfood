@@ -25,12 +25,12 @@ class TableController extends Controller
 		return TableResource::collection($tables);
 	}
 
-	public function show(TenantFormRequest $request, $id)
+	public function show(TenantFormRequest $request, $uuid)
 	{
-		if (!$table = $this->tableService->getTableById($id)) {
+		if (!$table = $this->tableService->getTableByUuid($uuid)) {
 			return response()->json(['message' => 'Table not found'], 404);
 		}
 
-		return TableResource::make($table);
+		return new TableResource($table);
 	}
 }

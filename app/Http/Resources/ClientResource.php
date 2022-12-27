@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Category;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Category */
-class CategoryResource extends JsonResource
+/** @mixin Client */
+class ClientResource extends JsonResource
 {
 	/**
 	 * @param Request $request
@@ -16,11 +16,10 @@ class CategoryResource extends JsonResource
 	public function toArray($request): array
 	{
 		return [
-			/* A key value pair. */
-			'identify' => $this->uuid,
+			'id' => $this->id,
 			'name' => $this->name,
-			'url' => $this->url,
-			'description' => $this->description,
+			'email' => $this->email,
+
 		];
 	}
 }

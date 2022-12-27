@@ -3,10 +3,16 @@
 namespace App\Providers;
 
 use App\Repositories\{CategoryRepository,
+	ClientRepository,
 	Contracts\CategoryRepositoryInterface,
+	Contracts\ClientRepositoryInterface,
+	Contracts\EvaluationRepositoryInterface,
+	Contracts\OrderRepositoryInterface,
 	Contracts\ProductRepositoryInterface,
 	Contracts\TableRepositoryInterface,
 	Contracts\TenantRepositoryInterface,
+	EvaluationRepository,
+	OrderRepository,
 	ProductRepository,
 	TableRepository,
 	TenantRepository};
@@ -20,6 +26,9 @@ class RepositoryServiceProvider extends ServiceProvider
 		$this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
 		$this->app->bind(TableRepositoryInterface::class, TableRepository::class);
 		$this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+		$this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
+		$this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+		$this->app->bind(EvaluationRepositoryInterface::class, EvaluationRepository::class);
 	}
 
 	public function boot()

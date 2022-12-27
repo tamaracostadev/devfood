@@ -25,12 +25,13 @@ class ProductController extends Controller
 		return ProductResource::collection($products);
 	}
 
-	public function show(TenantFormRequest $request, $flag)
+	public function show(TenantFormRequest $request, $uuid)
 	{
-		if (!$product = $this->productService->getProductByFlag($flag)) {
+		if (!$product = $this->productService->getProductByUuid($uuid)) {
 			return response()->json(['message' => 'Product not found'], 404);
 		}
 
-		return ProductResource::make($product);
+		return new ProductResource($product);
 	}
+
 }
