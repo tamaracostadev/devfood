@@ -51,6 +51,8 @@
 							   class="btn btn-info">Editar</a>
 							<a href="{{ route('tables.show', ['table' => $table->id]) }}"
 							   class="btn btn-warning">Ver</a>
+							<a href="{{ route('tables.qrcode', $table->identify) }}"
+							   class="btn btn-warning" target="_blank"><i class="fa fa-qrcode"></i></a>
 						</td>
 					</tr>
 				@endforeach
