@@ -11,8 +11,8 @@ return new class extends Migration {
 			$table->id();
 			$table->uuid('uuid');
 			$table->unsignedBigInteger('tenant_id');
-			$table->string('title')->unique();
-			$table->string('flag')->unique();
+			$table->string('title');
+			$table->string('flag');
 			$table->string('image')->nullable();
 			$table->text('description');
 			$table->decimal('price', 10, 2);

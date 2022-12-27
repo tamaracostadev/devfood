@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Tenant\Rules\UniqueTenantRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateCategory extends FormRequest
@@ -10,8 +11,12 @@ class StoreUpdateCategory extends FormRequest
 	{
 		$id = $this->segment(3);
 		return [
-			'name' => "required|min:3|max:255|unique:categories,name,{$id},id",
-			'description' => 'required|min:3|max:10000',
+			'name' => ["required",
+				"min:3",
+				"max:255",
+				new UniqueTenantRule('categories', $id),
+			],
+			'description' => ['required', 'min:3', 'max:10000'],
 		];
 	}
 

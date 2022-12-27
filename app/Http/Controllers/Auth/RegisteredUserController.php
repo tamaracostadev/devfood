@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
 		$request->validate([
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-			'cnpj' => ['required', 'unique:tenants'],
+			'cnpj' => ['required', 'unique:tenants', 'numeric', 'digits:14'],
 			'empresa' => ['required', 'unique:tenants,name'],
 			'password' => ['required', 'confirmed', Rules\Password::defaults()],
 		]);
