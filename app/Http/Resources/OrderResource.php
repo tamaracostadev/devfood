@@ -30,7 +30,6 @@ class OrderResource extends JsonResource
 			'company' => new TenantResource($this->tenant),
 			'date' => Carbon::make($this->created_at)->format('d/m/Y'),
 			'evaluations' => EvaluationResource::collection($this->evaluations),
-
 		];
 	}
 }
