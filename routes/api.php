@@ -58,7 +58,6 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
 		Route::get('/me', [AuthClientController::class, 'me'])->name('me');
 		Route::get('/logout', [AuthClientController::class, 'logout'])->name('logout');
 		Route::post('/orders', [OrderController::class, 'store'])->name('store');
-		Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('my-orders');
 		Route::post('/orders/{identify}/evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
 	});
 });

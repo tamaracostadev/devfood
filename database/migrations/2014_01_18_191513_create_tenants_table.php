@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
-    {
-        Schema::create('tenants', function (Blueprint $table) {
-            $table->id();
+	public function up()
+	{
+		Schema::create('tenants', function (Blueprint $table) {
+			$table->id();
 			$table->string('name');
-			$table->unsignedBigInteger('plan_id');
+			$table->unsignedInteger('plan_id');
 			$table->uuid('uuid');
 			$table->string('email')->unique();
 			$table->string('logo')->nullable();
@@ -27,17 +27,17 @@ return new class extends Migration {
 			$table->boolean('subscription_active')->default(false); // Assinatura ativa?
 			$table->boolean('subscription_suspended')->default(false); // Assinatura suspensa?
 
-            $table->timestamps();
+			$table->timestamps();
 
 			$table->foreign('plan_id')
 				->references('id')
 				->on('plans')
 				->onDelete('cascade');
-        });
-    }
+		});
+	}
 
-    public function down()
-    {
-        Schema::dropIfExists('tenants');
-    }
+	public function down()
+	{
+		Schema::dropIfExists('tenants');
+	}
 };

@@ -10,8 +10,8 @@ return new class extends Migration {
 		Schema::create('order_evaluations',
 			function (Blueprint $table) {
 				$table->id();
-				$table->unsignedBigInteger('order_id');
-				$table->unsignedBigInteger('client_id');
+				$table->unsignedInteger('order_id');
+				$table->unsignedInteger('client_id');
 				$table->integer('stars');
 				$table->text('comment')->nullable();
 				$table->timestamps();

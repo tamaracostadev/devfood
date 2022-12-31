@@ -5,11 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
-    {
-        Schema::create('details_plan', function (Blueprint $table) {
+	public function up()
+	{
+		Schema::create('details_plan', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('plan_id');
+			$table->unsignedInteger('plan_id');
 			$table->string('name');
 			$table->timestamps();
 			$table->foreign('plan_id')
@@ -18,10 +18,10 @@ return new class extends Migration {
 				->onDelete('cascade');
 		});
 
-    }
+	}
 
-    public function down()
-    {
-        Schema::dropIfExists('details_plan');
-    }
+	public function down()
+	{
+		Schema::dropIfExists('details_plan');
+	}
 };

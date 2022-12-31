@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
-    {
-        Schema::create('permission_profile', function (Blueprint $table) {
-            $table->id();
-			$table->unsignedBigInteger('permission_id');
-			$table->unsignedBigInteger('profile_id');
+	public function up()
+	{
+		Schema::create('permission_profile', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedInteger('permission_id');
+			$table->unsignedInteger('profile_id');
 			$table->foreign('permission_id')
 				->references('id')
 				->on('permissions')
@@ -19,11 +19,11 @@ return new class extends Migration {
 				->references('id')
 				->on('profiles')
 				->onDelete('cascade');
-        });
-    }
+		});
+	}
 
-    public function down()
-    {
-        Schema::dropIfExists('permission_profile');
-    }
+	public function down()
+	{
+		Schema::dropIfExists('permission_profile');
+	}
 };

@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
-    {
-        Schema::create('plan_profile', function (Blueprint $table) {
-            $table->id();
-			$table->unsignedBigInteger('plan_id');
-			$table->unsignedBigInteger('profile_id');
+	public function up()
+	{
+		Schema::create('plan_profile', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedInteger('plan_id');
+			$table->unsignedInteger('profile_id');
 			$table->foreign('plan_id')
 				->references('id')
 				->on('plans')
@@ -19,11 +19,11 @@ return new class extends Migration {
 				->references('id')
 				->on('profiles')
 				->onDelete('cascade');
-        });
-    }
+		});
+	}
 
-    public function down()
-    {
-        Schema::dropIfExists('plan_profile');
-    }
+	public function down()
+	{
+		Schema::dropIfExists('plan_profile');
+	}
 };

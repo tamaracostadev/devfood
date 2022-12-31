@@ -13,7 +13,7 @@ return new class extends Migration {
 			$table->string('identify');
 			$table->string('description')->nullable();
 			$table->string('status')->default('available');
-			$table->unsignedBigInteger('tenant_id');
+			$table->unsignedInteger('tenant_id');
 			$table->timestamps();
 
 			$table->foreign('tenant_id')
