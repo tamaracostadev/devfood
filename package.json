@@ -24,6 +24,6 @@
     },
     "dependencies": {
         "laravel-vite": "^0.0.24",
-        "vite": "^4.0.1"
+        "vite": "^4.0.5"
     }
 }
